@@ -38,9 +38,15 @@ public class ZipMerger {
     {
     	if(!ResourceRegistry.oldResourceList.equals(ResourceRegistry.resourceList))
     	{
+    		ArrayList<String> rlist = ResourceRegistry.resourceList;
+    		for(String s : ResourceRegistry.oldResourceList)
+    		{
+    			rlist.remove(s);
+    		}
+    		
     		log("Starting to download Zips.");
 	
-		    	for(String s : ResourceRegistry.resourceList)
+		    	for(String s : rlist)
 		    	{
 		    		
 			    	URL website = new URL(s);
@@ -70,7 +76,8 @@ public class ZipMerger {
     {
     	if(!ResourceRegistry.oldResourceList.equals(ResourceRegistry.resourceList))
     	{
-	    	log("Merging all ZIPs.");
+    		
+	    		log("Merging all ZIPs.");
 	    		
 	    		ZipUtil.unpack(xtraFile, new File("resourcecache"));
     	

@@ -20,7 +20,7 @@ public class CommandResource implements CommandExecutor
 		{
 			if(args.length >= 1)
 			{
-				if(args[0].equalsIgnoreCase("addlink"))
+				if(args[0].equalsIgnoreCase("addlink") && sender.hasPermission("resourceloader.addlink"))
 				{
 					if(args.length == 2)
 					{
@@ -31,12 +31,12 @@ public class CommandResource implements CommandExecutor
 					}
 				}
 				else
-				if(args[0].equalsIgnoreCase("pack"))
+				if(args[0].equalsIgnoreCase("pack") && sender.hasPermission("resourceloader.pack"))
 				{
 					ZipMerger.initMerge();
 					sender.sendMessage("Done!");
 				}
-				if(args[0].equalsIgnoreCase("alllinks"))
+				if(args[0].equalsIgnoreCase("list") && sender.hasPermission("resourceloader.list"))
 				{
 					sender.sendMessage("Here are all loaded registered resourcepacks:");
 					for(int i = 0; i < ResourceRegistry.resourceList.size(); i++)
