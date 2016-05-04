@@ -1,0 +1,6 @@
+name: ResourceLoader
+version: 1.0
+main: me.benfah.resourceloader.main.ResourceLoader
+commands:
+  resource: 
+    

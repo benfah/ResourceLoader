@@ -1,0 +1,55 @@
+package me.benfah.resourceloader.command;
+
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+
+import me.benfah.resourceloader.api.ResourceRegistry;
+import me.benfah.resourceloader.util.Utils;
+import me.benfah.resourceloader.util.ZipMerger;
+
+
+
+public class CommandResource implements CommandExecutor
+{
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
+	{
+		if(cmd.getName().equalsIgnoreCase("resource"))
+		{
+			if(args.length >= 1)
+			{
+				if(args[0].equalsIgnoreCase("addlink"))
+				{
+					if(args.length == 2)
+					{
+						if(Utils.isValidURL(args[1]))
+						{
+							ResourceRegistry.add(args[1]);
+						}
+					}
+				}
+				else
+				if(args[0].equalsIgnoreCase("pack"))
+				{
+					ZipMerger.initMerge();
+					sender.sendMessage("Done!");
+				}
+				if(args[0].equalsIgnoreCase("alllinks"))
+				{
+					sender.sendMessage("Here are all loaded registered resourcepacks:");
+					for(int i = 0; i < ResourceRegistry.resourceList.size(); i++)
+					{
+						String s = ResourceRegistry.resourceList.get(i);
+						sender.sendMessage(i + " - " +  s);
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
+	
+	
+}
